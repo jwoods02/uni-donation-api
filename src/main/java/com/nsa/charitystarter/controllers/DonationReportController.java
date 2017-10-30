@@ -1,8 +1,6 @@
 package com.nsa.charitystarter.controllers;
 
 import com.nsa.charitystarter.data.Activity;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,9 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 @RestController
@@ -25,7 +21,7 @@ public class DonationReportController {
 
         //hard coded-replace with a set of delegations through to the database.
 
-        return new Double(Math.round(id*1000+Math.random()*100));
+        return new Double(id);
 
 
     }

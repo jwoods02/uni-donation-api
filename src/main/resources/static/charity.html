@@ -12,9 +12,7 @@
     </head >
     <body >
 
-        <div id="t1"></div>
-        <div id="t2"></div>
-        <div id="t3"></div>
+
 
 
 
@@ -78,48 +76,75 @@ List of activities goes in here.
 
         </div >
 
-
+        <div id="t1"></div>
+        <div id="t2"></div>
+        <div id="t3"></div>
 
         <script>
 
             $(document).ready(function() {
 
-                console.log("Get the templates");
+                $.ajaxSetup({cache: false});
+
 
                 //get the templates
 
                 $("#t1").load("/templates/activity-table.html");
-                console.log("Get the templates 1");
 
                 $("#t2").load("/templates/activity-row.html");
-                console.log("Get the templates 2");
 
                 $("#t3").load("/templates/total-donations.html");
-                console.log("Get the templates 3");
 
 
+                //get the charity id from the URL
+
+                var id = $.url(2);
 
 
-                    //get the charity id from the URL
-                console.log("Get the charity from the URL");
+                //get the donation total from an API and inject
 
-                    var id = $.url(2);
-
-                    console.log ("charity id = ", id);
-
-                    //get the donation total from an API and inject
-
-                console.log("get total and inject");
-
-                    $.getJSON('/api/charity/' + id + '/donationTotal', function (data) {
+                $.ajax({//send the AJAX request
+                    type: "GET",
+                    url: "/api/charity/" + id + "/donationTotal",
+                    dataType: "json"
+                    , cache: false
+                    , timeout: 600000
+                    , async: true
+                    //,encode: true
+                })
+                    .done(function (data) { //what to do if the request is a success.
                         setTotal(data, '#totalContainer');
-                    });
-                console.log ("get activities and inject");
-                    //get the list of activities from an API and inject
-                    $.getJSON('/api/charity/' + id + '/recentActivity', function (data) {
-                        setActivities(data, '#activityContainer');
+                    })
+                    .fail(function (jqXHR, textStatus, errorThrown) { //and what to do if it fails
+                        console.log("failed");
                     });
 
+                $.ajax({//send the AJAX request
+                    type: "GET",
+                    url: "/api/charity/" + id + "/recentActivity",
+                    dataType: "json"
+                    , cache: false
+                    , timeout: 600000
+                    , async: true
+                    //,encode: true
+                })
+                    .done(function (data) { //what to do if the request is a success.
+                        setActivities(data, '#activityContainer');
+                    })
+                    .fail(function (jqXHR, textStatus, errorThrown) { //and what to do if it fails
+                        console.log("failed");
+                    });
+
+
+                //$.getJSON('/api/charity/' + id + '/donationTotal', function (data) {
+                //    setTotal(data, '#totalContainer');
+                //});
+                //get the list of activities from an API and inject
+                //$.getJSON('/api/charity/' + id + '/recentActivity', function (data) {
+                //    setActivities(data, '#activityContainer');
+                //});
+
+                //});
             });
         </script >
     </body >
