@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang = "en" >
+    <head >
+        <meta charset = "UTF-8" >
+        <title >Charity Giving<</title >
+        <script
+                src = "https://code.jquery.com/jquery-3.2.1.min.js"
+                integrity = "sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+                crossorigin = "anonymous" >
+        </script >
+
+
+        <link rel = "stylesheet" type = "text/css" href = "/css/bootstrap.min.css" />
+        <script src = "/js/charity.js" ></script >
+        <script src = "/js/jquery.loadTemplate.min.js" ></script >
+        <script src = "/js/js-url-2.5.0/url.js" ></script >
+
+    </head >
+    <body >
+        <div class = "container" >
+            <div class = "header" >
+                <h3 class = "text-muted" >Charity Giving</h3 >
+            </div >
+
+
+            <hr ></hr >
+
+
+            <div class = "jumbotron" >
+                <h1 >Charity Giving</h1 >
+                <p class = "lead" >Making it easier to make it better...</p >
+            </div >
+
+
+            <!--
+
+            This is the placeholder for the charity data section
+
+            -->
+
+            <section id = "charity-progress" >
+                <div class = "row" >
+                    <div class = "col-lg-6" >
+
+                        <!--
+
+Total of donations goes in here.
+
+ -->
+
+                        <H2 >Donation Total</H2 >
+                        <div id = "totalContainer" >
+
+                        </div >
+                    </div >
+
+                    <!--
+
+List of activities goes in here.
+ -->
+
+                    <div class = "col-lg-6" >
+                        <H2 >Activity Container</H2 >
+                        <div id = "activityContainer" >
+                            THIS SHOULD GO!
+                        </div >
+                    </div >
+                </div >
+            </section >
+
+
+            <footer class = "footer" >
+                <hr ></hr >
+                <p >&copy; Charity Giving 2017</p >
+            </footer >
+
+        </div >
+
+        <div id="total-template-container"></div>
+        <div id="activity-table-template-container"></div>
+        <div id="activity-table-row-template-container"></div>
+
+
+        <script >
+
+            //get the templates
+
+            $("#activity-table-template-container").load("/templates/activity-table.html");
+            $("#activity-table-row-template-container").load("/templates/activity-row.html");
+            $("#total-template-container").load("/templates/total-donations.html");
+
+
+            $(function fetchProducts() {
+                //get the charity id from the URL
+
+                var id = $.url(2);
+
+                //get the donation total from an API and inject
+
+                $.getJSON('/api/charity/'+id+'/donationTotal', function (data) {
+                    setTotal(data, '#totalContainer');
+                });
+
+                //get the list of activities from an API and inject
+                $.getJSON('/api/charity/'+id+'/recentActivity', function (data) {
+                    setActivities(data, '#activityContainer');
+                });
+            });
+        </script >
+
+
+    </body >
+</html >
