@@ -1,6 +1,9 @@
 package com.nsa.charitystarter.controllers;
 
 import com.nsa.charitystarter.data.Activity;
+import com.nsa.charitystarter.entity.Charity;
+import com.nsa.charitystarter.repository.CharityRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,8 +15,22 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping(path = "/api")
+@RequestMapping
 public class DonationReportController {
+
+    private CharityRepository charityRepo;
+
+    @Autowired
+    public DonationReportController (CharityRepository aService) {
+        this.charityRepo = aService;
+    }
+
+    @RequestMapping(path = "/charities")
+    public List<Charity> getCharities() {
+
+        return charityRepo.findAll();
+
+    }
 
 
     @RequestMapping(path = "/charity/{id}/donationTotal")
