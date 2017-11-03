@@ -1,8 +1,11 @@
 package com.nsa.charitystarter.controllers;
 
 import com.nsa.charitystarter.data.Activity;
-import com.nsa.charitystarter.entity.Charity;
+import com.nsa.charitystarter.entity.CharityEntity;
+import com.nsa.charitystarter.entity.DonationEntity;
 import com.nsa.charitystarter.repository.CharityRepository;
+import com.nsa.charitystarter.repository.DonationRepository;
+import com.nsa.charitystarter.service.DonationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,33 +15,38 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
-@RequestMapping
+@RequestMapping(path = "/api")
 public class DonationReportController {
 
-    private CharityRepository charityRepo;
+    private DonationRepository donationRepo;
+    private DonationService donationService;
 
     @Autowired
-    public DonationReportController (CharityRepository aService) {
-        this.charityRepo = aService;
+    public DonationReportController (DonationRepository aService, DonationService aDonationService) {
+        this.donationRepo = aService;
+        this.donationService = aDonationService;
     }
 
-    @RequestMapping(path = "/charities")
-    public List<Charity> getCharities() {
 
-        return charityRepo.findAll();
+
+    @RequestMapping(path = "/charities")
+    public List<DonationEntity> getCharities() {
+
+        return donationRepo.findAll();
 
     }
 
 
     @RequestMapping(path = "/charity/{id}/donationTotal")
-    public Double getDonationTotal(@PathVariable Long id) {
+    public Double getDonationTotal(@PathVariable Integer id) {
 
         //hard coded-replace with a set of delegations through to the database.
 
-        return new Double(id);
+        return donationService.getDonationTotal(id);
 
 
     }

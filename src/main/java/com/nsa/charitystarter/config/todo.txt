@@ -1,0 +1,5 @@
+-- Redo entities manually, check service works
+
+-- Add Carl's updated template
+
+-- Remove repository from controller, move to service
