@@ -1,9 +1,7 @@
 package com.nsa.charitystarter.controllers;
 
 import com.nsa.charitystarter.data.Activity;
-import com.nsa.charitystarter.entity.CharityEntity;
 import com.nsa.charitystarter.entity.DonationEntity;
-import com.nsa.charitystarter.repository.CharityRepository;
 import com.nsa.charitystarter.repository.DonationRepository;
 import com.nsa.charitystarter.service.DonationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +13,6 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 
 @RestController
