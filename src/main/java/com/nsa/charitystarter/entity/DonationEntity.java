@@ -41,4 +41,8 @@ public class DonationEntity {
     @JoinColumn(name="charity_id")
     private CharityEntity charity;
 
+    @ManyToOne
+    @JoinColumn(name="sponsor_form_id")
+    private SponsorFormEntity sponsorForm;
+
 }

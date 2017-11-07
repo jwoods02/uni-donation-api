@@ -34,7 +34,7 @@ public class DonationServiceImpl implements DonationService {
 
         CharityEntity charity = charityRepository.findById(Long.valueOf(id));
 
-        List<DonationEntity> donationList = charity.getDonation();
+        List<DonationEntity> donationList = charity.getDonations();
 
         for(DonationEntity donation: donationList) {
             donationTotal += donation.getAmountInPence();

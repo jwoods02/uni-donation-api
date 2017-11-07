@@ -27,6 +27,9 @@ public class CharityEntity {
     private String name;
 
     @OneToMany(mappedBy = "charity")
-    private List<DonationEntity> donation;
+    private List<DonationEntity> donations;
+
+    @OneToMany(mappedBy = "charity")
+    private List<SponsorFormEntity> sponsorForms;
 
 }

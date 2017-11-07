@@ -76,9 +76,48 @@ List of activities goes in here.
 
         </div >
 
-        <div id="t1"></div>
-        <div id="t2"></div>
-        <div id="t3"></div>
+        <div id="t1">
+            <section class="activity-table-template" style="display: none !important;">
+                <table class="table">
+                    <tbody class="activity-table-body">
+                    </tbody>
+                </table>
+            </section>
+        </div>
+        <div id="t2">
+            <section id="activity-row-template" style="display: none !important;">
+                <table>
+                    <tbody>
+                    <tr class="activity-row">
+                        <td width="10%">
+                    <span class="who">
+                </span>
+                        </td>
+
+                        <td width="60%">
+                            <span class="what"></span>
+                        </td>
+
+
+                        <td width="30%">
+                        <span class="when">
+                        </span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </section>
+        </div>
+        <div id="t3">
+            <section class="total-template" style="display: none !important;">
+    <span class="total">
+        <h1 class="total-value"></h1>
+    </span>
+            </section>
+
+        </div>
+
 
         <script>
 
@@ -89,11 +128,11 @@ List of activities goes in here.
 
                 //get the templates
 
-                $("#t1").load("/templates/activity-table.html");
-
-                $("#t2").load("/templates/activity-row.html");
-
-                $("#t3").load("/templates/total-donations.html");
+//                $("#t1").load("/templates/activity-table.html");
+//
+//                $("#t2").load("/templates/activity-row.html");
+//
+//                $("#t3").load("/templates/total-donations.html");
 
 
                 //get the charity id from the URL
@@ -110,7 +149,7 @@ List of activities goes in here.
                     , cache: false
                     , timeout: 600000
                     , async: true
-                    //,encode: true
+                    ,encode: true
                 })
                     .done(function (data) { //what to do if the request is a success.
                         setTotal(data, '#totalContainer');
@@ -126,7 +165,7 @@ List of activities goes in here.
                     , cache: false
                     , timeout: 600000
                     , async: true
-                    //,encode: true
+                    ,encode: true
                 })
                     .done(function (data) { //what to do if the request is a success.
                         setActivities(data, '#activityContainer');
