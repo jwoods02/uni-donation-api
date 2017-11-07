@@ -36,9 +36,9 @@ public class DonationEntity {
 
     @Column(name = "wishes_to_gift_aid", nullable = false)
     private Integer wishesToGiftAid;
-
+//
     @ManyToOne
-    @JoinColumn(name="charity")
-    private Library library;
+    @JoinColumn(name="charity_id")
+    private CharityEntity charity;
 
 }

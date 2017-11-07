@@ -12,6 +12,6 @@ import java.util.Optional;
 public interface CharityRepository  extends JpaRepository<CharityEntity, Long> {
 
     List<CharityEntity> findAll();
-    Optional<CharityEntity> findById(Long id);
+    CharityEntity findById(Long id);
 
 }

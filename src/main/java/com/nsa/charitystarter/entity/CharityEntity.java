@@ -26,7 +26,7 @@ public class CharityEntity {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "donation")
-    private List<DonationEntity> books;
+    @OneToMany(mappedBy = "charity")
+    private List<DonationEntity> donation;
 
 }

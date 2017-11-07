@@ -41,6 +41,9 @@ public class DonationReportController {
     @RequestMapping(path = "/charity/{id}/donationTotal")
     public Double getDonationTotal(@PathVariable Integer id) {
 
+        System.out.println("TEST");
+
+
         //hard coded-replace with a set of delegations through to the database.
 
         return donationService.getDonationTotal(id);
