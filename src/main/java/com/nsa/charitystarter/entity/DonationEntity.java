@@ -45,4 +45,14 @@ public class DonationEntity {
     @JoinColumn(name="sponsor_form_id")
     private SponsorFormEntity sponsorForm;
 
+    @ManyToOne
+    @JoinColumn(name="donor_id")
+    private DonorEntity donor;
+
+    // Constructor for easy testing
+    public DonationEntity(Integer id, Integer amountInPence) {
+        this.id = id;
+        this.amountInPence = amountInPence;
+    }
+
 }

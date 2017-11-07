@@ -1,5 +1,3 @@
--- Redo entities manually, check service works
+-- Add repository test
 
--- Add Carl's updated template
-
--- Remove repository from controller, move to service
+-- Do write up

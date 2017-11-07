@@ -1,5 +1,6 @@
 package com.nsa.charitystarter.repository;
 
+import com.nsa.charitystarter.entity.CharityEntity;
 import com.nsa.charitystarter.entity.DonationEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -10,5 +11,5 @@ import java.util.List;
  */
 public interface DonationRepository extends JpaRepository<DonationEntity, Long> {
 
-    List<DonationEntity> findByCharityId(Long id);
+    List<DonationEntity> findTop10ByCharityOrderByDonationDateDesc(CharityEntity charity);
 }

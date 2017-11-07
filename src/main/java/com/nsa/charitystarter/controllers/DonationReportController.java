@@ -19,30 +19,15 @@ import java.util.List;
 @RequestMapping(path = "/api")
 public class DonationReportController {
 
-    private DonationRepository donationRepo;
     private DonationService donationService;
 
     @Autowired
-    public DonationReportController (DonationRepository aService, DonationService aDonationService) {
-        this.donationRepo = aService;
+    public DonationReportController (DonationService aDonationService) {
         this.donationService = aDonationService;
     }
 
-
-
-    @RequestMapping(path = "/charities")
-    public List<DonationEntity> getCharities() {
-
-        return donationRepo.findAll();
-
-    }
-
-
     @RequestMapping(path = "/charity/{id}/donationTotal")
     public Double getDonationTotal(@PathVariable Integer id) {
-
-        System.out.println("TEST");
-
 
         //hard coded-replace with a set of delegations through to the database.
 
@@ -68,32 +53,34 @@ public class DonationReportController {
         //What should the controller sort out?  What should be delegated to the service?
         //What business event is the controller receiving?
 
-        List<Activity> activities = new ArrayList<>();
+//        List<Activity> activities = new ArrayList<>();
+//
+//        Activity donation1=new Activity("John", "Gave £10", LocalDateTime.of(2017, Month.OCTOBER,30,16,30));
+//        Activity donation2=new Activity("Peter", "Gave £20", LocalDateTime.of(2017, Month.OCTOBER,20,12,30));
+//        Activity donation3=new Activity("Sarah", "Gave £15", LocalDateTime.of(2017, Month.OCTOBER,18,12,45));
+//        Activity donation4=new Activity("Jess", "Gave £10", LocalDateTime.of(2017, Month.OCTOBER,17,10,12));
+//        Activity donation5=new Activity("Dave", "Gave £5", LocalDateTime.of(2017, Month.OCTOBER,15,18,10));
+//        Activity donation6=new Activity("Niamh", "Gave £100", LocalDateTime.of(2017, Month.OCTOBER,5,21,8));
+//
+//        Activity sponsorForm1=new Activity("Joe", "created a sponsor form", LocalDateTime.of(2017, Month.OCTOBER,23,21,8));
+//        Activity sponsorForm2=new Activity("Clare", "created a sponsor form", LocalDateTime.of(2017, Month.OCTOBER,19,21,8));
+//        Activity sponsorForm3=new Activity("Helen", "created a sponsor form", LocalDateTime.of(2017, Month.OCTOBER,14,21,8));
+//        Activity sponsorForm4=new Activity("Rob", "created a sponsor form", LocalDateTime.of(2017, Month.OCTOBER,7,21,8));
+//
+//        activities.add(donation1);
+//        activities.add(sponsorForm1);
+//        activities.add(donation2);
+//        activities.add(sponsorForm2);
+//        activities.add(donation3);
+//        activities.add(donation4);
+//        activities.add(donation5);
+//        activities.add(sponsorForm3);
+//        activities.add(sponsorForm4);
+//        activities.add(donation6);
+//
+//        return activities;
 
-        Activity donation1=new Activity("John", "Gave £10", LocalDateTime.of(2017, Month.OCTOBER,30,16,30));
-        Activity donation2=new Activity("Peter", "Gave £20", LocalDateTime.of(2017, Month.OCTOBER,20,12,30));
-        Activity donation3=new Activity("Sarah", "Gave £15", LocalDateTime.of(2017, Month.OCTOBER,18,12,45));
-        Activity donation4=new Activity("Jess", "Gave £10", LocalDateTime.of(2017, Month.OCTOBER,17,10,12));
-        Activity donation5=new Activity("Dave", "Gave £5", LocalDateTime.of(2017, Month.OCTOBER,15,18,10));
-        Activity donation6=new Activity("Niamh", "Gave £100", LocalDateTime.of(2017, Month.OCTOBER,5,21,8));
-
-        Activity sponsorForm1=new Activity("Joe", "created a sponsor form", LocalDateTime.of(2017, Month.OCTOBER,23,21,8));
-        Activity sponsorForm2=new Activity("Clare", "created a sponsor form", LocalDateTime.of(2017, Month.OCTOBER,19,21,8));
-        Activity sponsorForm3=new Activity("Helen", "created a sponsor form", LocalDateTime.of(2017, Month.OCTOBER,14,21,8));
-        Activity sponsorForm4=new Activity("Rob", "created a sponsor form", LocalDateTime.of(2017, Month.OCTOBER,7,21,8));
-
-        activities.add(donation1);
-        activities.add(sponsorForm1);
-        activities.add(donation2);
-        activities.add(sponsorForm2);
-        activities.add(donation3);
-        activities.add(donation4);
-        activities.add(donation5);
-        activities.add(sponsorForm3);
-        activities.add(sponsorForm4);
-        activities.add(donation6);
-
-        return activities;
+        return donationService.getRecentActivities(Math.toIntExact(id));
 
     }
 
