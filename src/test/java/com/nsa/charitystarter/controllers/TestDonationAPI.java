@@ -1,8 +1,5 @@
 package com.nsa.charitystarter.controllers;
 
-import com.nsa.charitystarter.entity.CharityEntity;
-import com.nsa.charitystarter.entity.DonationEntity;
-import com.nsa.charitystarter.repository.DonationRepository;
 import com.nsa.charitystarter.service.DonationService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,10 +10,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.mockito.BDDMockito.given;
@@ -41,10 +34,13 @@ public class TestDonationAPI {
     @Test
     public void expectToSeeDonationTotal() throws Exception {
 
-
+        // Given
         given(this.donationService.getDonationTotal(1)).willReturn(new Double(12345.67));
 
+        // When
         mvc.perform(MockMvcRequestBuilders.get("/api/charity/1/donationTotal").accept(MediaType.APPLICATION_JSON))
+
+                // Then
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("12345.67")))
                 ;

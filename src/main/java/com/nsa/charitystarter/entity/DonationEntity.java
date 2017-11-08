@@ -55,4 +55,10 @@ public class DonationEntity {
         this.amountInPence = amountInPence;
     }
 
+    // Another constructor for easy testing
+    public DonationEntity(Integer id, Date donationDate) {
+        this.id = id;
+        this.donationDate = donationDate;
+    }
+
 }

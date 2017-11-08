@@ -23,8 +23,14 @@ public class CharityEntity {
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "registration_id")
+    private Integer registrationId;
+
     @Column(name = "name")
     private String name;
+
+    @Column(name = "purpose")
+    private String purpose;
 
     @OneToMany(mappedBy = "charity")
     private List<DonationEntity> donations;
