@@ -1,17 +1,12 @@
 package com.nsa.charitystarter.controllers;
 
 import com.nsa.charitystarter.data.Activity;
-import com.nsa.charitystarter.entity.DonationEntity;
-import com.nsa.charitystarter.repository.DonationRepository;
 import com.nsa.charitystarter.service.DonationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.LocalDateTime;
-import java.time.Month;
-import java.util.ArrayList;
 import java.util.List;
 
 
